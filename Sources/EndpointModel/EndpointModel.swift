@@ -39,10 +39,10 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         case error(Error)
     }
 
-    public let endpoint: EndpointPublisher<T>
+    public let publisher: EndpointPublisher<T>
 
-    public init(endpoint: EndpointPublisher<T>) {
-        self.endpoint = endpoint
+    public init(publisher: EndpointPublisher<T>) {
+        self.publisher = publisher
     }
 
     public var value: T? {
@@ -57,7 +57,7 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     public func load() {
         assert(Thread.isMainThread)
         self.state = .loading(
-            self.endpoint
+            self.publisher
                 .receive(on: RunLoop.main)
                 .sink(
                     receiveCompletion: { completion in
