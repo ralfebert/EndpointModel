@@ -39,9 +39,9 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         case error(Error)
     }
 
-    public let endpoint: Endpoint<T>
+    public let endpoint: EndpointPublisher<T>
 
-    public init(endpoint: Endpoint<T>) {
+    public init(endpoint: EndpointPublisher<T>) {
         self.endpoint = endpoint
     }
 

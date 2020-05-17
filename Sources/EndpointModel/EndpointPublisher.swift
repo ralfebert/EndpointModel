@@ -22,4 +22,4 @@
 
 import Combine
 
-public typealias Endpoint<T: Decodable> = AnyPublisher<T, Error>
+public typealias EndpointPublisher<T: Decodable> = AnyPublisher<T, Error>
