@@ -20,34 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import ActivityIndicatorView
-import SwiftUI
+import Foundation
+import Resolver
+import TinierNetworking
 
-struct StatusOverlay: View {
+struct Todo: Codable, Identifiable {
+    var id: Int
+    var title: String
+}
 
-    @ObservedObject var model: TodosModel
+struct TodoEndpoints {
 
-    var body: some View {
-        switch model.state {
-            case .ready:
-                return AnyView(EmptyView())
-            case .loading:
-                return AnyView(ActivityIndicatorView(isAnimating: .constant(true), style: .large))
-            case .loaded:
-                return AnyView(EmptyView())
-            case let .error(error):
-                return AnyView(
-                    VStack(spacing: 10) {
-                        Text(error.localizedDescription)
-                            .frame(maxWidth: 300)
-                        Button("Retry") {
-                            self.model.load()
-                        }
-                    }
-                    .padding()
-                    .background(Color.yellow)
-                )
-        }
+    let url = URL(string: "https://jsonplaceholder.typicode.com/todos/")!
+    @Injected var urlSession: URLSession
+    @Injected var jsonDecoder: JSONDecoder
+
+    var todos: Endpoint<[Todo]> {
+        Endpoint(jsonRequest: URLRequest(url: self.url), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
     }
 
 }

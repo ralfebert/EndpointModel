@@ -20,34 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import ActivityIndicatorView
-import SwiftUI
+import EndpointModel
+import Resolver
 
-struct StatusOverlay: View {
+class TodosModel: EndpointModel<[Todo]> {
 
-    @ObservedObject var model: TodosModel
+    let endpoints: TodoEndpoints = Resolver.resolve()
 
-    var body: some View {
-        switch model.state {
-            case .ready:
-                return AnyView(EmptyView())
-            case .loading:
-                return AnyView(ActivityIndicatorView(isAnimating: .constant(true), style: .large))
-            case .loaded:
-                return AnyView(EmptyView())
-            case let .error(error):
-                return AnyView(
-                    VStack(spacing: 10) {
-                        Text(error.localizedDescription)
-                            .frame(maxWidth: 300)
-                        Button("Retry") {
-                            self.model.load()
-                        }
-                    }
-                    .padding()
-                    .background(Color.yellow)
-                )
-        }
+    init() {
+        super.init(endpoint: TodoEndpoints().todos)
     }
 
 }

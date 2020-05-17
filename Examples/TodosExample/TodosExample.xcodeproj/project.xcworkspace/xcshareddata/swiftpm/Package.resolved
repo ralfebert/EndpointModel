@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ActivityIndicatorView",
+        "repositoryURL": "https://github.com/ralfebert/ActivityIndicatorView.git",
+        "state": {
+          "branch": null,
+          "revision": "7fd56c3c755424d6ce947e63373d68ca1d4b987b",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "EndpointModel",
+        "repositoryURL": "https://github.com/ralfebert/EndpointModel.git",
+        "state": {
+          "branch": null,
+          "revision": "65e602f34a2c6cbe23e867adbb9dd8b229ecc05f",
+          "version": "0.1.6"
+        }
+      },
+      {
+        "package": "HttpEnums",
+        "repositoryURL": "https://github.com/ralfebert/HttpEnums.git",
+        "state": {
+          "branch": null,
+          "revision": "796d01d7e2a969821d09693c7037c7b95f7c53f4",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver.git",
+        "state": {
+          "branch": null,
+          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
+          "version": "1.1.4"
+        }
+      },
+      {
+        "package": "SweetURLRequest",
+        "repositoryURL": "https://github.com/ralfebert/SweetURLRequest.git",
+        "state": {
+          "branch": null,
+          "revision": "fcdd708f41bfe95d81ae3ecacc6b11df813a3a27",
+          "version": "0.1.5"
+        }
+      },
+      {
+        "package": "TinierNetworking",
+        "repositoryURL": "https://github.com/ralfebert/tinier-networking.git",
+        "state": {
+          "branch": null,
+          "revision": "c1337e0921aa02d55fdad5bee3bf12c04eaa3e49",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
