@@ -23,6 +23,7 @@
 import Combine
 import os
 import SwiftUI
+@_exported import TinierNetworking
 
 open class EndpointModel<T: Decodable>: ObservableObject {
 
@@ -39,10 +40,12 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         case error(Error)
     }
 
-    public let publisher: EndpointPublisher<T>
+    public let endpoint: Endpoint<T>
+    public let urlSession: URLSession
 
-    public init(publisher: EndpointPublisher<T>) {
-        self.publisher = publisher
+    public init(endpoint: Endpoint<T>, urlSession: URLSession = .shared) {
+        self.endpoint = endpoint
+        self.urlSession = urlSession
     }
 
     public var value: T? {
@@ -56,8 +59,9 @@ open class EndpointModel<T: Decodable>: ObservableObject {
 
     public func load() {
         assert(Thread.isMainThread)
+        os_log("Starting to load: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
         self.state = .loading(
-            self.publisher
+            self.urlSession.load(self.endpoint)
                 .receive(on: RunLoop.main)
                 .sink(
                     receiveCompletion: { completion in

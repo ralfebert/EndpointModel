@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "HttpEnums",
+        "repositoryURL": "https://github.com/ralfebert/HttpEnums.git",
+        "state": {
+          "branch": null,
+          "revision": "796d01d7e2a969821d09693c7037c7b95f7c53f4",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "SweetURLRequest",
+        "repositoryURL": "https://github.com/ralfebert/SweetURLRequest.git",
+        "state": {
+          "branch": null,
+          "revision": "fcdd708f41bfe95d81ae3ecacc6b11df813a3a27",
+          "version": "0.1.5"
+        }
+      },
+      {
+        "package": "TinierNetworking",
+        "repositoryURL": "https://github.com/ralfebert/tinier-networking.git",
+        "state": {
+          "branch": null,
+          "revision": "6c801c130b142123b0c939e331850cbbc213a809",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
