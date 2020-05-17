@@ -1,3 +1,3 @@
 # EndpointModel
 
-A description of this package.
+See the included example project for an example on how to use `EndpointModel`.
