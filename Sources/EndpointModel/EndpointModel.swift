@@ -24,7 +24,7 @@ import Combine
 import os
 import SwiftUI
 
-public class EndpointModel<T: Decodable>: ObservableObject {
+open class EndpointModel<T: Decodable>: ObservableObject {
 
     @Published public var state = State.ready {
         didSet {
