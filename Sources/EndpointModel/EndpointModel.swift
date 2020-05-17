@@ -61,7 +61,7 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         assert(Thread.isMainThread)
         os_log("Starting to load: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
         self.state = .loading(
-            self.urlSession.load(self.endpoint)
+            self.endpoint.load()
                 .receive(on: RunLoop.main)
                 .sink(
                     receiveCompletion: { completion in
