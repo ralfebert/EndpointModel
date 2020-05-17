@@ -24,28 +24,28 @@ import Combine
 import os
 import SwiftUI
 
-class EndpointModel<T: Decodable>: ObservableObject {
+public class EndpointModel<T: Decodable>: ObservableObject {
 
-    @Published var state = State.ready {
+    @Published public var state = State.ready {
         didSet {
             os_log("%s: %s", log: EndpointLogging.log, type: .debug, String(describing: self), String(describing: self.state))
         }
     }
 
-    enum State {
+    public enum State {
         case ready
         case loading(Cancellable)
         case loaded(T)
         case error(Error)
     }
 
-    let endpoint: Endpoint<T>
+    public let endpoint: Endpoint<T>
 
-    init(endpoint: Endpoint<T>) {
+    public init(endpoint: Endpoint<T>) {
         self.endpoint = endpoint
     }
 
-    var result: T? {
+    public var value: T? {
         switch self.state {
             case let .loaded(value):
                 return value
@@ -54,7 +54,7 @@ class EndpointModel<T: Decodable>: ObservableObject {
         }
     }
 
-    func load() {
+    public func load() {
         assert(Thread.isMainThread)
         self.state = .loading(
             self.endpoint
@@ -74,7 +74,7 @@ class EndpointModel<T: Decodable>: ObservableObject {
                 ))
     }
 
-    func loadIfNeeded() {
+    public func loadIfNeeded() {
         assert(Thread.isMainThread)
         guard case .ready = self.state else { return }
         self.load()
