@@ -23,7 +23,7 @@
 import Combine
 import os
 import SwiftUI
-@_exported import TinierNetworking
+@_exported import Endpoint
 
 open class EndpointModel<T: Decodable>: ObservableObject {
 

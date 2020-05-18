@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Endpoint",
+        "repositoryURL": "https://github.com/ralfebert/endpoint.git",
+        "state": {
+          "branch": null,
+          "revision": "a1a9697e94547cc64f0825c1ed8fa384082dfb0a",
+          "version": "0.1.0"
+        }
+      },
+      {
         "package": "HttpEnums",
         "repositoryURL": "https://github.com/ralfebert/HttpEnums.git",
         "state": {
@@ -17,15 +26,6 @@
           "branch": null,
           "revision": "fcdd708f41bfe95d81ae3ecacc6b11df813a3a27",
           "version": "0.1.5"
-        }
-      },
-      {
-        "package": "TinierNetworking",
-        "repositoryURL": "https://github.com/ralfebert/tinier-networking.git",
-        "state": {
-          "branch": null,
-          "revision": "c1337e0921aa02d55fdad5bee3bf12c04eaa3e49",
-          "version": "0.1.0"
         }
       }
     ]
