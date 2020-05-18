@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF4D2B1E2471CB0B0080E50F /* TinierNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = BF4D2B1D2471CB0B0080E50F /* TinierNetworking */; };
 		BF598F332471C2E0005791F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F322471C2E0005791F3 /* AppDelegate.swift */; };
 		BF598F352471C2E0005791F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F342471C2E0005791F3 /* SceneDelegate.swift */; };
 		BF598F372471C2E0005791F3 /* TodosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F362471C2E0005791F3 /* TodosListView.swift */; };
@@ -46,7 +45,6 @@
 				BF598F532471C7AC005791F3 /* EndpointModel in Frameworks */,
 				BF598F4B2471C6CD005791F3 /* Resolver in Frameworks */,
 				BF598F482471C5C5005791F3 /* ActivityIndicatorView in Frameworks */,
-				BF4D2B1E2471CB0B0080E50F /* TinierNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +153,6 @@
 				BF598F472471C5C5005791F3 /* ActivityIndicatorView */,
 				BF598F4A2471C6CD005791F3 /* Resolver */,
 				BF598F522471C7AC005791F3 /* EndpointModel */,
-				BF4D2B1D2471CB0B0080E50F /* TinierNetworking */,
 			);
 			productName = TodosExample;
 			productReference = BF598F2F2471C2E0005791F3 /* TodosExample.app */;
@@ -189,7 +186,6 @@
 				BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				BF598F492471C6CD005791F3 /* XCRemoteSwiftPackageReference "Resolver" */,
 				BF598F512471C7AC005791F3 /* XCRemoteSwiftPackageReference "EndpointModel" */,
-				BF4D2B1C2471CB0B0080E50F /* XCRemoteSwiftPackageReference "tinier-networking" */,
 			);
 			productRefGroup = BF598F302471C2E0005791F3 /* Products */;
 			projectDirPath = "";
@@ -420,14 +416,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BF4D2B1C2471CB0B0080E50F /* XCRemoteSwiftPackageReference "tinier-networking" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ralfebert/tinier-networking.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 		BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ralfebert/ActivityIndicatorView.git";
@@ -455,11 +443,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BF4D2B1D2471CB0B0080E50F /* TinierNetworking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BF4D2B1C2471CB0B0080E50F /* XCRemoteSwiftPackageReference "tinier-networking" */;
-			productName = TinierNetworking;
-		};
 		BF598F472471C5C5005791F3 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;

@@ -22,7 +22,7 @@
 
 import Foundation
 import Resolver
-import TinierNetworking
+import Endpoint
 
 struct Todo: Codable, Identifiable {
     var id: Int
