@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Endpoint
 import Foundation
 import Resolver
-import Endpoint
 
 struct Todo: Codable, Identifiable {
     var id: Int

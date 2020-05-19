@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 import Combine
+@_exported import Endpoint
 import os
 import SwiftUI
-@_exported import Endpoint
 
 open class EndpointModel<T: Decodable>: ObservableObject {
 
@@ -70,10 +70,12 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                                 break
                             case let .failure(error):
                                 self.state = .error(error)
+                                self.onError(error)
                         }
                     },
                     receiveValue: { value in
                         self.state = .loaded(value)
+                        self.onLoaded(value)
                     }
                 ))
     }
@@ -83,5 +85,10 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         guard case .ready = self.state else { return }
         self.load()
     }
+
+    // MARK: Hooks for subclasses
+
+    open func onLoaded(_: T) {}
+    open func onError(_: Error) {}
 
 }
