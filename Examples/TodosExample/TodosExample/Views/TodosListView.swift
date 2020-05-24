@@ -26,23 +26,62 @@ import SwiftUI
 struct TodosListView: View {
 
     @ObservedObject var model = TodosModel()
+    @State var presentNewItem = false
 
     var body: some View {
-        List(model.value ?? []) { todo in
-            Text(todo.title)
+        NavigationView {
+            VStack(alignment: .leading) {
+                List {
+                    if presentNewItem {
+                        TodoView(model: TodoModel()) { result in
+                            if case let .success(todo) = result {
+                                self.model.add(todo: todo)
+                            }
+                            self.presentNewItem = false
+                        }
+                    }
+                    ForEach(model.value ?? []) { todo in
+                        TodoView(model: TodoModel(todo: todo, autosave: true))
+                    }
+                    .onDelete(perform: self.delete(atOffsets:))
+                }
+                if model.value != nil {
+                    Button(
+                        action: { self.presentNewItem = true },
+                        label: {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                Text("New Todo")
+                            }
+                        }
+                    )
+                    .padding()
+                }
+            }
+            .navigationBarTitle("Todos")
+            .onAppear { self.model.loadIfNeeded() }
+            .overlay(StatusOverlay(model: self.model))
         }
-        .overlay(StatusOverlay(model: model))
-        .onAppear { self.model.loadIfNeeded() }
     }
 
+    func delete(atOffsets indexSet: IndexSet) {
+        indexSet.forEach { index in
+            model.delete(todo: self.model.value![index])
+        }
+    }
 }
 
 struct TodosListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TodosListView(model: self.exampleLoadingModel)
             TodosListView(model: self.exampleLoadedModel)
+                .previewDisplayName("Loaded")
+            TodosListView(model: self.exampleLoadingModel)
+                .previewDisplayName("Loading")
             TodosListView(model: self.exampleErrorModel)
+                .previewDisplayName("Error")
         }
     }
 

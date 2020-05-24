@@ -25,7 +25,7 @@ import Foundation
 import Resolver
 
 struct Todo: Codable, Identifiable {
-    var id: Int
+    var id: Int?
     var title: String
 }
 
@@ -37,6 +37,18 @@ struct TodoEndpoints {
 
     var todos: Endpoint<[Todo]> {
         Endpoint(jsonRequest: URLRequest(url: self.url), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+    }
+
+    func save(todo: Todo) -> Endpoint<Todo> {
+        if let id = todo.id {
+            return Endpoint(jsonRequest: URLRequest(method: .put, url: URL(string: String(id), relativeTo: self.url)!, jsonBody: todo), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+        } else {
+            return Endpoint(jsonRequest: URLRequest(method: .post, url: self.url, jsonBody: todo), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+        }
+    }
+
+    func delete(todoId: Int) -> Endpoint<Void> {
+        Endpoint(request: URLRequest(method: .delete, url: URL(string: "\(todoId)", relativeTo: self.url)!), urlSession: self.urlSession)
     }
 
 }

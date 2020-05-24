@@ -20,35 +20,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import ActivityIndicatorView
-import EndpointModel
 import SwiftUI
 
-struct StatusOverlay<V: Decodable>: View {
-
-    @ObservedObject var model: EndpointModel<V>
+struct TodoView: View {
+    @ObservedObject var model: TodoModel
+    var onCommit: (Result<Todo, InputError>) -> Void = { _ in }
 
     var body: some View {
-        switch model.state {
-            case .ready:
-                return AnyView(EmptyView())
-            case .loading:
-                return AnyView(ActivityIndicatorView(isAnimating: .constant(true), style: .large))
-            case .loaded:
-                return AnyView(EmptyView())
-            case let .error(error):
-                return AnyView(
-                    VStack(spacing: 10) {
-                        Text(error.localizedDescription)
-                            .frame(maxWidth: 300)
-                        Button("Retry") {
-                            self.model.load()
-                        }
+        HStack {
+            Image(systemName: "circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .onTapGesture {
+                    // TODO: toggle completion
+                }
+            TextField(
+                "Todo",
+                text: $model.todo.title,
+                onCommit: {
+                    if !self.model.todo.title.isEmpty {
+                        self.onCommit(.success(self.model.todo))
+                    } else {
+                        self.onCommit(.failure(.empty))
                     }
-                    .padding()
-                    .background(Color.yellow)
-                )
+                }
+            )
         }
     }
+}
 
+enum InputError: Error {
+    case empty
+}
+
+struct TodoView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            TodoView(model: TodoModel(todo: Todo(id: 5, title: "Buy soy milk"), autosave: false))
+            TodoView(model: TodoModel())
+        }.previewLayout(.sizeThatFits)
+    }
 }

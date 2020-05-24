@@ -20,15 +20,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Combine
 import EndpointModel
+import Foundation
 import Resolver
 
 class TodosModel: EndpointModel<[Todo]> {
 
-    let endpoints: TodoEndpoints = Resolver.resolve()
+    private var endpoints: TodoEndpoints = Resolver.resolve()
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
-        super.init(endpoint: TodoEndpoints().todos)
+        super.init(endpoint: self.endpoints.todos)
+    }
+
+    func delete(todo: Todo) {
+        guard let id = todo.id else { fatalError() }
+        self.endpoints.delete(todoId: id).load { _ in
+            DispatchQueue.main.async {
+                self.load()
+            }
+        }
+    }
+
+    func add(todo: Todo) {
+        guard todo.id == nil else { fatalError() }
+        self.endpoints.save(todo: todo).load { _ in
+            DispatchQueue.main.async {
+                self.load()
+            }
+        }
     }
 
 }

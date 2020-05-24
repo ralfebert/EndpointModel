@@ -20,34 +20,46 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import ActivityIndicatorView
-import EndpointModel
-import SwiftUI
+import Combine
+import Foundation
+import os
+import Resolver
 
-struct StatusOverlay<V: Decodable>: View {
+class TodoModel: ObservableObject {
 
-    @ObservedObject var model: EndpointModel<V>
+    @Published var todo: Todo
 
-    var body: some View {
-        switch model.state {
-            case .ready:
-                return AnyView(EmptyView())
-            case .loading:
-                return AnyView(ActivityIndicatorView(isAnimating: .constant(true), style: .large))
-            case .loaded:
-                return AnyView(EmptyView())
-            case let .error(error):
-                return AnyView(
-                    VStack(spacing: 10) {
-                        Text(error.localizedDescription)
-                            .frame(maxWidth: 300)
-                        Button("Retry") {
-                            self.model.load()
-                        }
-                    }
-                    .padding()
-                    .background(Color.yellow)
-                )
+    @Injected private var endpoints: TodoEndpoints
+    private var cancellables = Set<AnyCancellable>()
+
+    /// Create a view model for an existing todo
+    init(todo: Todo, autosave: Bool) {
+        self.todo = todo
+
+        if autosave {
+            $todo
+                .dropFirst()
+                .debounce(for: 1.0, scheduler: RunLoop.main)
+                .sink { _ in
+                    self.save()
+                }
+                .store(in: &self.cancellables)
+        }
+    }
+
+    /// Create a view model for a new todo
+    convenience init() {
+        self.init(todo: Todo(title: ""), autosave: false)
+    }
+
+    func save() {
+        self.endpoints.save(todo: self.todo).load { result in
+            switch result {
+                case let .success(todo):
+                    os_log("Saved: %@", type: .info, String(describing: todo))
+                case let .failure(error):
+                    os_log("Error saving: %@", type: .error, String(describing: error))
+            }
         }
     }
 
