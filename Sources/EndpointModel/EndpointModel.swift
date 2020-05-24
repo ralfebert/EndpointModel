@@ -33,6 +33,8 @@ open class EndpointModel<T: Decodable>: ObservableObject {
         }
     }
 
+    @Published public var value: T?
+
     public enum State {
         case ready
         case loading(Cancellable)
@@ -41,20 +43,9 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     }
 
     public let endpoint: Endpoint<T>
-    public let urlSession: URLSession
 
-    public init(endpoint: Endpoint<T>, urlSession: URLSession = .shared) {
+    public init(endpoint: Endpoint<T>) {
         self.endpoint = endpoint
-        self.urlSession = urlSession
-    }
-
-    public var value: T? {
-        switch self.state {
-            case let .loaded(value):
-                return value
-            default:
-                return .none
-        }
     }
 
     public func load() {
@@ -70,11 +61,13 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                                 break
                             case let .failure(error):
                                 self.state = .error(error)
+                                self.value = nil
                                 self.onError(error)
                         }
                     },
                     receiveValue: { value in
                         self.state = .loaded(value)
+                        self.value = value
                         self.onLoaded(value)
                     }
                 ))
