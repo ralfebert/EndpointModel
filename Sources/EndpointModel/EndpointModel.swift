@@ -30,6 +30,13 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     @Published public var state = State.ready {
         didSet {
             os_log("%s: %s", log: EndpointLogging.log, type: .debug, String(describing: self), String(describing: self.state))
+
+            switch self.state {
+                case let .loaded(value):
+                    self.value = value
+                default:
+                    self.value = nil
+            }
         }
     }
 
@@ -61,13 +68,11 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                                 break
                             case let .failure(error):
                                 self.state = .error(error)
-                                self.value = nil
                                 self.onError(error)
                         }
                     },
                     receiveValue: { value in
                         self.state = .loaded(value)
-                        self.value = value
                         self.onLoaded(value)
                     }
                 ))
