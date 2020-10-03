@@ -35,7 +35,8 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                 case let .loaded(value):
                     self.value = value
                 default:
-                    self.value = nil
+                    // do nothing, intentionally keep a previously loaded value in other states
+                    break
             }
         }
     }
@@ -57,6 +58,10 @@ open class EndpointModel<T: Decodable>: ObservableObject {
 
     public func load() {
         assert(Thread.isMainThread)
+        if case .loading = self.state {
+            os_log("Already loading: %s", log: EndpointLogging.log, type: .info, String(describing: self.endpoint))
+            return
+        }
         os_log("Starting to load: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
         self.state = .loading(
             self.endpoint.load()
