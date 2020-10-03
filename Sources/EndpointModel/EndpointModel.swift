@@ -29,8 +29,6 @@ open class EndpointModel<T: Decodable>: ObservableObject {
 
     @Published public var state = State.ready {
         didSet {
-            os_log("%s: %s", log: EndpointLogging.log, type: .debug, String(describing: self), String(describing: self.state))
-
             switch self.state {
                 case let .loaded(value):
                     self.value = value
@@ -59,10 +57,9 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     public func load() {
         assert(Thread.isMainThread)
         if case .loading = self.state {
-            os_log("Already loading: %s", log: EndpointLogging.log, type: .info, String(describing: self.endpoint))
+            os_log("Already loading: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
             return
         }
-        os_log("Starting to load: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
         self.state = .loading(
             self.endpoint.load()
                 .receive(on: RunLoop.main)
