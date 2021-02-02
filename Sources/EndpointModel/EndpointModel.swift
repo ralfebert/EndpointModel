@@ -30,6 +30,16 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     @Published public var state = State.ready {
         didSet {
             switch self.state {
+                case .ready:
+                    os_log("%s ready", type: .info, String(describing: self))
+                case .loading:
+                    os_log("%s loading", type: .info, String(describing: self))
+                case .loaded:
+                    os_log("%s loaded", type: .info, String(describing: self))
+                case let .error(error):
+                    os_log("%s error: %s", type: .error, String(describing: self), String(describing: error))
+            }
+            switch self.state {
                 case let .loaded(value):
                     self.value = value
                 default:
