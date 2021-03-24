@@ -81,7 +81,7 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                 ))
     }
 
-    public func loadIfNeeded() {
+    open func loadIfNeeded() {
         assert(Thread.isMainThread)
         guard case .ready = self.state else { return }
         self.load()
