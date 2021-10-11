@@ -20,9 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Endpoint
+import EndpointModel
 import Foundation
-import Resolver
+import os
+import SweetURLRequest
 
 struct Todo: Codable, Identifiable {
     var id: Int?
@@ -30,25 +31,71 @@ struct Todo: Codable, Identifiable {
 }
 
 struct TodoEndpoints {
+    static let shared = TodoEndpoints()
 
-    let url = URL(string: "https://jsonplaceholder.typicode.com/todos/")!
-    @Injected var urlSession: URLSession
-    @Injected var jsonDecoder: JSONDecoder
+    private let url = URL(string: "https://jsonplaceholder.typicode.com/todos/")!
+    private let urlSession: URLSession
+    private let jsonDecoder = JSONDecoder()
+
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
 
     var todos: Endpoint<[Todo]> {
-        Endpoint(jsonRequest: URLRequest(url: self.url), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+        self.jsonEndpoint(request: URLRequest(method: .get, url: self.url))
     }
 
     func save(todo: Todo) -> Endpoint<Todo> {
         if let id = todo.id {
-            return Endpoint(jsonRequest: URLRequest(method: .put, url: URL(string: String(id), relativeTo: self.url)!, jsonBody: todo), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+            return self.jsonEndpoint(request: try! URLRequest(method: .put, url: self.url(todoId: id), jsonBody: todo))
         } else {
-            return Endpoint(jsonRequest: URLRequest(method: .post, url: self.url, jsonBody: todo), urlSession: self.urlSession, jsonDecoder: self.jsonDecoder)
+            return self.jsonEndpoint(request: try! URLRequest(method: .post, url: self.url, jsonBody: todo))
         }
     }
 
-    func delete(todoId: Int) -> Endpoint<Void> {
-        Endpoint(request: URLRequest(method: .delete, url: URL(string: "\(todoId)", relativeTo: self.url)!), urlSession: self.urlSession)
+    func url(todoId: Int) -> URL {
+        URL(string: "\(todoId)", relativeTo: self.url)!
     }
 
+    func delete(todoId: Int) -> Endpoint<Void> {
+        let request = URLRequest(method: .delete, url: url(todoId: todoId))
+        return self.endpoint(request: request)
+            .map { _ in () } // throw away result data
+            .eraseToAnyPublisher()
+    }
+
+    private func jsonEndpoint<T: Decodable>(request: URLRequest) -> Endpoint<T> {
+        var request = request
+        request.headers.accept = .json
+        return self.endpoint(request: request)
+            .tryMap { data -> T in
+                try self.jsonDecoder.decode(T.self, from: data)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func endpoint(request: URLRequest) -> Endpoint<Data> {
+        self.urlSession.dataTaskPublisher(for: request)
+            .tryMap { data, response -> Data in
+                os_log("Got response: %i bytes for %s", type: .debug, data.count, String(describing: request.url))
+
+                try self.validateResponse(data, response)
+
+                return data
+            }
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+
+    private func validateResponse(_: Data?, _ response: URLResponse) throws {
+        let httpResponse = response as! HTTPURLResponse
+
+        let statusCode = HTTPStatusCode(httpResponse.statusCode)
+
+        if statusCode.responseType == .success {
+            return
+        }
+
+        throw statusCode
+    }
 }

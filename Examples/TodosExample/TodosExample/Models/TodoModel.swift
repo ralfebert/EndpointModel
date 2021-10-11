@@ -23,13 +23,11 @@
 import Combine
 import Foundation
 import os
-import Resolver
 
 class TodoModel: ObservableObject {
-
     @Published var todo: Todo
 
-    @Injected private var endpoints: TodoEndpoints
+    private let endpoints = TodoEndpoints.shared
     private var cancellables = Set<AnyCancellable>()
 
     /// Create a view model for an existing todo
@@ -55,12 +53,11 @@ class TodoModel: ObservableObject {
     func save() {
         self.endpoints.save(todo: self.todo).load { result in
             switch result {
-                case let .success(todo):
-                    os_log("Saved: %@", type: .info, String(describing: todo))
-                case let .failure(error):
-                    os_log("Error saving: %@", type: .error, String(describing: error))
+            case let .success(todo):
+                os_log("Saved: %@", type: .info, String(describing: todo))
+            case let .failure(error):
+                os_log("Error saving: %@", type: .error, String(describing: error))
             }
         }
     }
-
 }

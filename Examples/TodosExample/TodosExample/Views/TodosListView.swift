@@ -24,52 +24,64 @@ import Combine
 import SwiftUI
 
 struct TodosListView: View {
-
     @ObservedObject var model = TodosModel()
     @State var presentNewItem = false
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                List {
-                    if presentNewItem {
-                        TodoView(model: TodoModel()) { result in
-                            if case let .success(todo) = result {
-                                self.model.add(todo: todo)
-                            }
-                            self.presentNewItem = false
+        VStack {
+            List {
+                if presentNewItem {
+                    TodoView(model: TodoModel()) { result in
+                        if case let .success(todo) = result {
+                            self.model.add(todo: todo)
                         }
+                        self.presentNewItem = false
                     }
-                    ForEach(model.value ?? []) { todo in
-                        TodoView(model: TodoModel(todo: todo, autosave: true))
-                    }
-                    .onDelete(perform: self.delete(atOffsets:))
                 }
+
+                ForEach(model.value ?? []) { todo in
+                    TodoView(model: TodoModel(todo: todo, autosave: true))
+                }
+                .onDelete(perform: self.delete(atOffsets:))
+
                 if model.value != nil {
                     Button(
-                        action: { self.presentNewItem = true },
+                        action: {
+                            self.presentNewItem = true
+
+                        },
                         label: {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
                                 Text("New Todo")
                             }
                         }
                     )
-                    .padding()
                 }
             }
-            .navigationBarTitle("Todos")
-            .onAppear { self.model.loadIfNeeded() }
-            .overlay(StatusOverlay(model: self.model))
         }
+        .navigationBarTitle("Todos")
+        .navigationBarItems(trailing: self.navigationBarTrailingItems)
+        .onAppear { self.model.loadIfNeeded() }
+        .overlay(StatusOverlay(model: self.model))
     }
 
     func delete(atOffsets indexSet: IndexSet) {
         indexSet.forEach { index in
             model.delete(todo: self.model.value![index])
+            self.model.value!.remove(at: index)
         }
+    }
+
+    @ViewBuilder var navigationBarTrailingItems: some View {
+        Button(
+            action: {
+                self.model.load()
+            },
+            label: {
+                Image(systemName: "arrow.clockwise")
+            }
+        )
     }
 }
 
@@ -110,5 +122,4 @@ struct TodosListView_Previews: PreviewProvider {
     struct ExampleCancellable: Cancellable {
         func cancel() {}
     }
-
 }

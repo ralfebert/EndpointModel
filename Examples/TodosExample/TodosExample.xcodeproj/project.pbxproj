@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF598F332471C2E0005791F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F322471C2E0005791F3 /* AppDelegate.swift */; };
-		BF598F352471C2E0005791F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F342471C2E0005791F3 /* SceneDelegate.swift */; };
+		BF4637F92714794B00F0017A /* EndpointModel in Frameworks */ = {isa = PBXBuildFile; productRef = BF4637F82714794B00F0017A /* EndpointModel */; };
+		BF4637FC271479C200F0017A /* SweetURLRequest in Frameworks */ = {isa = PBXBuildFile; productRef = BF4637FB271479C200F0017A /* SweetURLRequest */; };
+		BF598F332471C2E0005791F3 /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F322471C2E0005791F3 /* TodosApp.swift */; };
 		BF598F392471C2E2005791F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF598F382471C2E2005791F3 /* Assets.xcassets */; };
 		BF598F3C2471C2E2005791F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF598F3B2471C2E2005791F3 /* Preview Assets.xcassets */; };
 		BF598F3F2471C2E2005791F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF598F3D2471C2E2005791F3 /* LaunchScreen.storyboard */; };
-		BF598F482471C5C5005791F3 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = BF598F472471C5C5005791F3 /* ActivityIndicatorView */; };
-		BF598F4B2471C6CD005791F3 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = BF598F4A2471C6CD005791F3 /* Resolver */; };
-		BF598F4D2471C6F0005791F3 /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F4C2471C6F0005791F3 /* AppDelegate+Injection.swift */; };
-		BF598F532471C7AC005791F3 /* EndpointModel in Frameworks */ = {isa = PBXBuildFile; productRef = BF598F522471C7AC005791F3 /* EndpointModel */; };
 		BF598F592471C8AA005791F3 /* TodoEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F582471C8AA005791F3 /* TodoEndpoints.swift */; };
 		BF840FDE2479DD5700F556BD /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF840FDD2479DD5700F556BD /* TodosModel.swift */; };
 		BF840FE02479DD7000F556BD /* TodosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF840FDF2479DD7000F556BD /* TodosListView.swift */; };
@@ -26,13 +23,11 @@
 
 /* Begin PBXFileReference section */
 		BF598F2F2471C2E0005791F3 /* TodosExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodosExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF598F322471C2E0005791F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF598F342471C2E0005791F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BF598F322471C2E0005791F3 /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		BF598F382471C2E2005791F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF598F3B2471C2E2005791F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF598F3E2471C2E2005791F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF598F402471C2E2005791F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF598F4C2471C6F0005791F3 /* AppDelegate+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Injection.swift"; sourceTree = "<group>"; };
 		BF598F582471C8AA005791F3 /* TodoEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEndpoints.swift; sourceTree = "<group>"; };
 		BF840FDD2479DD5700F556BD /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
 		BF840FDF2479DD7000F556BD /* TodosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosListView.swift; sourceTree = "<group>"; };
@@ -46,20 +41,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF598F532471C7AC005791F3 /* EndpointModel in Frameworks */,
-				BF598F4B2471C6CD005791F3 /* Resolver in Frameworks */,
-				BF598F482471C5C5005791F3 /* ActivityIndicatorView in Frameworks */,
+				BF4637FC271479C200F0017A /* SweetURLRequest in Frameworks */,
+				BF4637F92714794B00F0017A /* EndpointModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF4637F72714794B00F0017A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BF598F262471C2E0005791F3 = {
 			isa = PBXGroup;
 			children = (
 				BF598F312471C2E0005791F3 /* TodosExample */,
 				BF598F302471C2E0005791F3 /* Products */,
+				BF4637F72714794B00F0017A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,9 +96,7 @@
 		BF598F4E2471C714005791F3 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				BF598F322471C2E0005791F3 /* AppDelegate.swift */,
-				BF598F4C2471C6F0005791F3 /* AppDelegate+Injection.swift */,
-				BF598F342471C2E0005791F3 /* SceneDelegate.swift */,
+				BF598F322471C2E0005791F3 /* TodosApp.swift */,
 				BF598F402471C2E2005791F3 /* Info.plist */,
 			);
 			path = App;
@@ -156,9 +156,8 @@
 			);
 			name = TodosExample;
 			packageProductDependencies = (
-				BF598F472471C5C5005791F3 /* ActivityIndicatorView */,
-				BF598F4A2471C6CD005791F3 /* Resolver */,
-				BF598F522471C7AC005791F3 /* EndpointModel */,
+				BF4637F82714794B00F0017A /* EndpointModel */,
+				BF4637FB271479C200F0017A /* SweetURLRequest */,
 			);
 			productName = TodosExample;
 			productReference = BF598F2F2471C2E0005791F3 /* TodosExample.app */;
@@ -189,9 +188,7 @@
 			);
 			mainGroup = BF598F262471C2E0005791F3;
 			packageReferences = (
-				BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
-				BF598F492471C6CD005791F3 /* XCRemoteSwiftPackageReference "Resolver" */,
-				BF598F512471C7AC005791F3 /* XCRemoteSwiftPackageReference "EndpointModel" */,
+				BF4637FA271479C200F0017A /* XCRemoteSwiftPackageReference "SweetURLRequest" */,
 			);
 			productRefGroup = BF598F302471C2E0005791F3 /* Products */;
 			projectDirPath = "";
@@ -220,10 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF598F4D2471C6F0005791F3 /* AppDelegate+Injection.swift in Sources */,
 				BF840FE02479DD7000F556BD /* TodosListView.swift in Sources */,
-				BF598F332471C2E0005791F3 /* AppDelegate.swift in Sources */,
-				BF598F352471C2E0005791F3 /* SceneDelegate.swift in Sources */,
+				BF598F332471C2E0005791F3 /* TodosApp.swift in Sources */,
 				BF840FDE2479DD5700F556BD /* TodosModel.swift in Sources */,
 				BF598F592471C8AA005791F3 /* TodoEndpoints.swift in Sources */,
 				BF840FE22479DD8E00F556BD /* TodoModel.swift in Sources */,
@@ -296,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -350,7 +345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -424,47 +419,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+		BF4637FA271479C200F0017A /* XCRemoteSwiftPackageReference "SweetURLRequest" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ralfebert/ActivityIndicatorView.git";
+			repositoryURL = "https://github.com/ralfebert/SweetURLRequest.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		BF598F492471C6CD005791F3 /* XCRemoteSwiftPackageReference "Resolver" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hmlongco/Resolver.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.4;
-			};
-		};
-		BF598F512471C7AC005791F3 /* XCRemoteSwiftPackageReference "EndpointModel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ralfebert/EndpointModel.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
+				minimumVersion = 0.1.9;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BF598F472471C5C5005791F3 /* ActivityIndicatorView */ = {
+		BF4637F82714794B00F0017A /* EndpointModel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BF598F462471C5C5005791F3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
-			productName = ActivityIndicatorView;
-		};
-		BF598F4A2471C6CD005791F3 /* Resolver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BF598F492471C6CD005791F3 /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = Resolver;
-		};
-		BF598F522471C7AC005791F3 /* EndpointModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BF598F512471C7AC005791F3 /* XCRemoteSwiftPackageReference "EndpointModel" */;
 			productName = EndpointModel;
+		};
+		BF4637FB271479C200F0017A /* SweetURLRequest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF4637FA271479C200F0017A /* XCRemoteSwiftPackageReference "SweetURLRequest" */;
+			productName = SweetURLRequest;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

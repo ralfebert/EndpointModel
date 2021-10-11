@@ -23,16 +23,15 @@
 import Combine
 
 public extension AnyPublisher {
-
     func load(completion: @escaping (Result<Output, Failure>) -> Void) {
         self.subscribe(
             Subscribers.Sink(
                 receiveCompletion: { error in
                     switch error {
-                        case .finished:
-                            break
-                        case let .failure(error):
-                            completion(.failure(error))
+                    case .finished:
+                        break
+                    case let .failure(error):
+                        completion(.failure(error))
                     }
                 },
                 receiveValue: { value in
@@ -41,5 +40,4 @@ public extension AnyPublisher {
             )
         )
     }
-
 }

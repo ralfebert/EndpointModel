@@ -23,11 +23,9 @@
 import Combine
 import EndpointModel
 import Foundation
-import Resolver
 
 class TodosModel: EndpointModel<[Todo]> {
-
-    private var endpoints: TodoEndpoints = Resolver.resolve()
+    private var endpoints = TodoEndpoints.shared
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -51,5 +49,4 @@ class TodosModel: EndpointModel<[Todo]> {
             }
         }
     }
-
 }
