@@ -1,5 +1,5 @@
 # EndpointModel
 
-EndpointModel is a compact networking base model for SwiftUI apps.
+EndpointModel is a lightweight base structure for Model ObservableObjects that handle networking in SwiftUI apps.
 
-See the included example project for an example on how to use `EndpointModel`.
+See the included example project `TodosExample` for an example on how to use `EndpointModel`.

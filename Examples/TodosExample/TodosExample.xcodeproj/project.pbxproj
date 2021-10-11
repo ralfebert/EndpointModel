@@ -23,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF10D543271483A50084B9F5 /* EndpointModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EndpointModel; path = ../..; sourceTree = "<group>"; };
 		BF598F2F2471C2E0005791F3 /* TodosExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodosExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF598F322471C2E0005791F3 /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		BF598F382471C2E2005791F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				BF598F312471C2E0005791F3 /* TodosExample */,
+				BF10D543271483A50084B9F5 /* EndpointModel */,
 				BF598F302471C2E0005791F3 /* Products */,
 				BF4637F72714794B00F0017A /* Frameworks */,
 			);
