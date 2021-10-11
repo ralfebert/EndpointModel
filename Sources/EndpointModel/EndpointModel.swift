@@ -21,9 +21,10 @@
 // SOFTWARE.
 
 import Combine
-@_exported import Endpoint
 import os
 import SwiftUI
+
+public typealias Endpoint<Payload> = AnyPublisher<Payload, Error>
 
 open class EndpointModel<T: Decodable>: ObservableObject {
 
@@ -67,11 +68,11 @@ open class EndpointModel<T: Decodable>: ObservableObject {
     public func load() {
         assert(Thread.isMainThread)
         if case .loading = self.state {
-            os_log("Already loading: %s", log: EndpointLogging.log, type: .debug, String(describing: self.endpoint))
+            os_log("Already loading: %s", type: .debug, String(describing: self.endpoint))
             return
         }
         self.state = .loading(
-            self.endpoint.load()
+            self.endpoint
                 .receive(on: RunLoop.main)
                 .sink(
                     receiveCompletion: { completion in
@@ -90,7 +91,7 @@ open class EndpointModel<T: Decodable>: ObservableObject {
                 ))
     }
 
-    public func loadIfNeeded() {
+    open func loadIfNeeded() {
         assert(Thread.isMainThread)
         guard case .ready = self.state else { return }
         self.load()

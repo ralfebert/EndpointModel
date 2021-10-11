@@ -20,13 +20,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
-import Resolver
+import Combine
 
-extension Resolver: ResolverRegistering {
-    public static func registerAllServices() {
-        register { JSONDecoder() }
-        register { URLSession.shared }
-        register { TodoEndpoints() }
+public extension AnyPublisher {
+
+    func load(completion: @escaping (Result<Output, Failure>) -> Void) {
+        self.subscribe(
+            Subscribers.Sink(
+                receiveCompletion: { error in
+                    switch error {
+                        case .finished:
+                            break
+                        case let .failure(error):
+                            completion(.failure(error))
+                    }
+                },
+                receiveValue: { value in
+                    completion(.success(value))
+                }
+            )
+        )
     }
+
 }
