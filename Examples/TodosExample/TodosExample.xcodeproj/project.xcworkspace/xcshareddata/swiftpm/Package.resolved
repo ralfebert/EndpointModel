@@ -2,48 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "ActivityIndicatorView",
-        "repositoryURL": "https://github.com/ralfebert/ActivityIndicatorView.git",
-        "state": {
-          "branch": null,
-          "revision": "7fd56c3c755424d6ce947e63373d68ca1d4b987b",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Endpoint",
-        "repositoryURL": "https://github.com/ralfebert/endpoint.git",
-        "state": {
-          "branch": null,
-          "revision": "7a85200701c821be97dad0a2bfaae6838ab26651",
-          "version": "0.1.2"
-        }
-      },
-      {
         "package": "EndpointModel",
-        "repositoryURL": "https://github.com/ralfebert/EndpointModel.git",
+        "repositoryURL": "https://github.com/ralfebert/EndpointModel/",
         "state": {
           "branch": null,
-          "revision": "d35d68fb7e7d2d9f19738b5865562c134f11a87e",
-          "version": "0.1.10"
-        }
-      },
-      {
-        "package": "HttpEnums",
-        "repositoryURL": "https://github.com/ralfebert/HttpEnums.git",
-        "state": {
-          "branch": null,
-          "revision": "796d01d7e2a969821d09693c7037c7b95f7c53f4",
-          "version": "0.1.0"
-        }
-      },
-      {
-        "package": "Resolver",
-        "repositoryURL": "https://github.com/hmlongco/Resolver.git",
-        "state": {
-          "branch": null,
-          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
-          "version": "1.1.4"
+          "revision": "084382501df983c5f5788aae84a93b2983b40df8",
+          "version": "0.2.0"
         }
       },
       {
@@ -51,8 +15,8 @@
         "repositoryURL": "https://github.com/ralfebert/SweetURLRequest.git",
         "state": {
           "branch": null,
-          "revision": "fcdd708f41bfe95d81ae3ecacc6b11df813a3a27",
-          "version": "0.1.5"
+          "revision": "68b67b9eec051a729431e442571abcc2c54d3838",
+          "version": "0.1.14"
         }
       }
     ]

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF10D542271483540084B9F5 /* EndpointModel in Frameworks */ = {isa = PBXBuildFile; productRef = BF10D541271483540084B9F5 /* EndpointModel */; };
 		BF4637F92714794B00F0017A /* EndpointModel in Frameworks */ = {isa = PBXBuildFile; productRef = BF4637F82714794B00F0017A /* EndpointModel */; };
 		BF4637FC271479C200F0017A /* SweetURLRequest in Frameworks */ = {isa = PBXBuildFile; productRef = BF4637FB271479C200F0017A /* SweetURLRequest */; };
 		BF598F332471C2E0005791F3 /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF598F322471C2E0005791F3 /* TodosApp.swift */; };
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF10D542271483540084B9F5 /* EndpointModel in Frameworks */,
 				BF4637FC271479C200F0017A /* SweetURLRequest in Frameworks */,
 				BF4637F92714794B00F0017A /* EndpointModel in Frameworks */,
 			);
@@ -158,6 +160,7 @@
 			packageProductDependencies = (
 				BF4637F82714794B00F0017A /* EndpointModel */,
 				BF4637FB271479C200F0017A /* SweetURLRequest */,
+				BF10D541271483540084B9F5 /* EndpointModel */,
 			);
 			productName = TodosExample;
 			productReference = BF598F2F2471C2E0005791F3 /* TodosExample.app */;
@@ -189,6 +192,7 @@
 			mainGroup = BF598F262471C2E0005791F3;
 			packageReferences = (
 				BF4637FA271479C200F0017A /* XCRemoteSwiftPackageReference "SweetURLRequest" */,
+				BF10D540271483540084B9F5 /* XCRemoteSwiftPackageReference "EndpointModel" */,
 			);
 			productRefGroup = BF598F302471C2E0005791F3 /* Products */;
 			projectDirPath = "";
@@ -419,6 +423,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BF10D540271483540084B9F5 /* XCRemoteSwiftPackageReference "EndpointModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralfebert/EndpointModel/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		BF4637FA271479C200F0017A /* XCRemoteSwiftPackageReference "SweetURLRequest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ralfebert/SweetURLRequest.git";
@@ -430,6 +442,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BF10D541271483540084B9F5 /* EndpointModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF10D540271483540084B9F5 /* XCRemoteSwiftPackageReference "EndpointModel" */;
+			productName = EndpointModel;
+		};
 		BF4637F82714794B00F0017A /* EndpointModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EndpointModel;
